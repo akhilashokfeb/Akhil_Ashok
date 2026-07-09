@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_loyalty_points_transaction_tree" model="ir.ui.view">
+        <field name="name">loyalty.points.transaction.tree</field>
+        <field name="model">loyalty.points.transaction</field>
+        <field name="arch" type="xml">
+            <tree string="Loyalty Transactions" create="false">
+                <field name="transaction_date"/>
+                <field name="partner_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="transaction_type"/>
+                <field name="points" sum="Total Points"/>
+                <field name="remaining_points" sum="Remaining Points"/>
+                <field name="expiration_date"/>
+                <field name="account_move_id"/>
+                <field name="sale_order_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_loyalty_points_transaction_pivot" model="ir.ui.view">
+        <field name="name">loyalty.points.transaction.pivot</field>
+        <field name="model">loyalty.points.transaction</field>
+        <field name="arch" type="xml">
+            <pivot string="Loyalty Transactions">
+                <field name="partner_id" type="row"/>
+                <field name="company_id" type="row" groups="base.group_multi_company"/>
+                <field name="transaction_type" type="col"/>
+                <field name="points" type="measure"/>
+                <field name="remaining_points" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_loyalty_points_transactions" model="ir.actions.act_window">
+        <field name="name">Loyalty Transactions</field>
+        <field name="res_model">loyalty.points.transaction</field>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+
+    <menuitem
+        id="menu_customer_loyalty_root"
+        name="Loyalty"
+        parent="sale.sale_menu_root"
+        sequence="70"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem
+        id="menu_loyalty_points_transactions"
+        name="Transactions"
+        parent="menu_customer_loyalty_root"
+        action="action_loyalty_points_transactions"
+        sequence="20"
+        groups="sales_team.group_sale_salesman"/>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_loyalty_points" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.loyalty.points</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pricing_setting_container']" position="after">
+                <block title="Customer Loyalty Points"
+                       name="customer_loyalty_points_setting_container">
+                    <setting string="Amount Required for 1 Point"
+                             help="Customer earns one loyalty point for this invoice amount.">
+                        <field name="loyalty_earning_amount"/>
+                    </setting>
+                    <setting string="Value of 1 Point"
+                             help="Discount value of one loyalty point in company currency.">
+                        <field name="loyalty_redemption_value"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

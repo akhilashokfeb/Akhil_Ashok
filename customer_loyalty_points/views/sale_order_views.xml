@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.loyalty.points</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_header']" position="after">
+                <div class="alert alert-success o_loyalty_banner my-3 px-4 py-2 d-inline-flex align-items-center"
+                     invisible="not partner_id or points_available == 0 or state != 'draft'">
+                    <span>
+                        <i class="fa fa-gift me-2"/>You have
+                        <strong class="mx-1">
+                            <field name="points_available"
+                                   readonly="1"
+                                   nolabel="1"
+                                   class="oe_inline"/>
+                            loyalty points
+                        </strong>
+                        for this customer.
+                    </span>
+                    <button name="action_redeem_now"
+                            type="object"
+                            string="Redeem Now"
+                            class="btn btn-outline-success btn-sm ms-3"/>
+                </div>
+                <group>
+                    <field name="redeemed_points"
+                           readonly="1"
+                           invisible="not partner_id or redeemed_points == 0"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']"
+                   position="before">
+                <field name="is_loyalty_redemption_line" column_invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_template_id']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']"
+                   position="attributes">
+                <attribute name="readonly">is_loyalty_redemption_line</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

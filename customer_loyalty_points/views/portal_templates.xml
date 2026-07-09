@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_loyalty_points"
+              name="Show Loyalty Points"
+              inherit_id="portal.portal_my_home"
+              customize_show="True"
+              priority="40">
+
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/customer_loyalty_points/static/img/loyalty_3.png'"/>
+                <t t-set="title">Loyalty Points</t>
+                <t t-set="url" t-value="'/my'"/>
+                <t t-set="show_count" t-value="True"/>
+                 <t t-set="text">
+                <span class="fw-bold text-primary">
+                    <t t-set="placeholder_count" t-value="'loyalty_points_count'"/>
+                </span>
+                 </t>
+
+            </t>
+        </div>
+    </template>
+</odoo>

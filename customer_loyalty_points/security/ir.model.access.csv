@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_loyalty_points_transaction_user,loyalty.points.transaction.user,model_loyalty_points_transaction,sales_team.group_sale_salesman,1,0,0,0
+access_loyalty_points_transaction_manager,loyalty.points.transaction.manager,model_loyalty_points_transaction,sales_team.group_sale_manager,1,1,1,1
+access_loyalty_redeem_wizard_user,loyalty.redeem.wizard.user,model_loyalty_redeem_wizard,sales_team.group_sale_salesman,1,1,1,1

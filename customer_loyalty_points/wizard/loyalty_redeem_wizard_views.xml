@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_loyalty_redeem_wizard_form" model="ir.ui.view">
+        <field name="name">loyalty.redeem.wizard.form</field>
+        <field name="model">loyalty.redeem.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Redeem Loyalty Points">
+                <group>
+                    <field name="order_id" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="points_available"/>
+                    <field name="points_to_redeem"/>
+                    <field name="redemption_amount"/>
+                </group>
+                <footer>
+                    <button name="action_apply_redemption"
+                            type="object"
+                            string="Apply"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
